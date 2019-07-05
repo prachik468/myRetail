@@ -58,6 +58,20 @@ Testing:
 Run the application:
 *********************************
 
+1)Need to have mongodb running on :
+
+Host: 127.0.0.1 Port: 27017
+
+2)//GET endpoint Type the below URl in the Web Browser: http://localhost:8080/products/{id}
+
+example: http://localhost:8080/products/13860428
+
+To test Update: In postman: Send a PUT request to http://localhost:8080/products/{id}
+
+Example:- http://localhost:8080/products/13860428
+````
+{"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}} 
+````
 Swagger2 documentation path:
 *******************************************
 
