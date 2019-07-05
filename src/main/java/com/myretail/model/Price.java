@@ -14,6 +14,7 @@ public class Price {
 	@Id
 	private String priceId;
 
+	@JsonIgnore
 	private long id;
 
 	private Double value;

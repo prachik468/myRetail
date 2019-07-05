@@ -10,9 +10,8 @@ apply plugin: 'idea'
 apply plugin: 'base'
 
 
-group = 'com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 configurations {
@@ -28,7 +27,7 @@ repositories {
 
 
 jar{ 
- baseName = 'myretail-app'
+ baseName = 'myRetail'
     version =  '0.1.0'
      enabled = true 
      

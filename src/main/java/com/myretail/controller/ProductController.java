@@ -42,17 +42,14 @@ public class ProductController {
 	@PutMapping("/{id}")
 	public Product update(@PathVariable("id") long productId, @RequestBody Product product)
 			throws ProductMisMatchException {
-		if (product.getProductId() != productId) {
+		if (product != null && product.getProductId() != productId) {
 			throw new ProductMisMatchException();
 		}
-
 		try {
 			return productService.updatePrice(productId, product);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw new ProductMisMatchException();
 		}
-
 	}
 
 }

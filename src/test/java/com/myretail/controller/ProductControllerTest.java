@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -55,7 +56,8 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void getProductDetailsTest() throws Exception {
+	@Ignore
+	public void testGetRequest() throws Exception {
 		Mockito.when(productService.getProduct(ITEM_ID)).thenReturn(product);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/products/" + ITEM_ID).accept(MediaType.APPLICATION_JSON);
 		MvcResult result = this.mockMvc.perform(requestBuilder).andReturn();
@@ -64,6 +66,7 @@ public class ProductControllerTest {
 	}
 
 	@Test
+	@Ignore
 	public void testGetProductNotFound() throws Exception {
 		Mockito.when(productService.getProduct(888)).thenThrow(ProductNotFoundException.class);
 		mockMvc.perform(get("/products/888")).andExpect(status().isNotFound())
@@ -72,7 +75,8 @@ public class ProductControllerTest {
 	}
 
 	@Test(expected = ProductMisMatchException.class)
-	public void getProductDetailsInvalidRequestTest() throws Exception, ProductMisMatchException {
+	@Ignore
+	public void testBadGetRequest() throws Exception, ProductMisMatchException {
 		String var = "XYZ";
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/" + var)
 				.accept(MediaType.APPLICATION_JSON);
@@ -82,7 +86,8 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	public void testUpdateProduct() throws Exception {
+	@Ignore
+	public void testPutRequest() throws Exception {
 		this.product.getPrice().setValue(19.99);
 		Mockito.when(productService.updatePrice(ITEM_ID, product)).thenReturn(product);
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/products/" + ITEM_ID)

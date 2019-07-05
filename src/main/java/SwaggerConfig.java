@@ -1,5 +1,4 @@
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,7 +15,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
-@ComponentScan(basePackages = "com.*")
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 	@Bean
 	public Docket productApi() {
@@ -34,8 +32,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 				.title("myRetail REST API")
 				.description("Spring Boot-based case study for myRetail API")
 				.version("1.0.0")
-				.license("PK License")
-				.licenseUrl("http://terms-of-service.url")
+				.license("MIT License")
+				.licenseUrl("http://opensource.org/licenses/MIT")
 				.build();
 	}
 

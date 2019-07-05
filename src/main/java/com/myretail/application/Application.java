@@ -4,15 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.myretail.model.Price;
 import com.myretail.model.Product;
 import com.myretail.repository.ProductRepository;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @SpringBootApplication
+@ComponentScan(basePackages = "com.*")
 @EnableMongoRepositories(basePackageClasses = ProductRepository.class)
+@EnableSwagger2
 public class Application  implements CommandLineRunner {
 
 	@Autowired
@@ -31,9 +36,8 @@ public class Application  implements CommandLineRunner {
 		price.setValue(13.49);
 		Product product = new Product();
 		product.setProductId(13860428);
-		product.setName("he Big Lebowski (Blu-ray) (Widescreen");
+		product.setName("The Big Lebowski (Blu-ray) (Widescreen)");
 		product.setPrice(price);
 		productRepository.save(product);
 	}
-	
 }
