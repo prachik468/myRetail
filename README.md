@@ -81,15 +81,15 @@ Swagger2 documentation path:
 http://localhost:8080/swagger-ui.html
 
 GET: With valid product (http://localhost:8080/products/13860428) 
-![Screenshot](get-with-valid-data.png)
-![Screenshot](get-with-valid-data-response.png)
+![Screenshot](get-with-valid-data.PNG)
+![Screenshot](get-with-valid-data-response.PNG)
 
 PUT Request: With Valid product Id
-![Screenshot](put-with-valid-data.png)
+![Screenshot](put-with-valid-data.PNG)
 
 GET: With invalid product (http://localhost:8080/products/13860428)
-![Screenshot](get-with-invalid-data.png)
-![Screenshot](put-with-invalid--response.png)
+![Screenshot](get-with-invalid-data.PNG)
+![Screenshot](put-with-invalid--response.PNG)
 
 PUT Request: With invalid product Id:
-![Screenshot](put-with-invalid-data.png)
+![Screenshot](put-with-invalid-data.PNG)
