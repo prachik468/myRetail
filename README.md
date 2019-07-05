@@ -62,11 +62,12 @@ Run the application:
 
 Host: 127.0.0.1 Port: 27017
 
-2)//GET endpoint Type the below URl in the Web Browser: http://localhost:8080/products/{id}
+2)//GET endpoint Type the below URl in the Web Browser: 
+	http://localhost:8080/products/{id}
 
 example: http://localhost:8080/products/13860428
 
-To test Update: In postman: Send a PUT request to http://localhost:8080/products/{id}
+To test Update: In Swagger: Send a PUT request to http://localhost:8080/products/{id}
 
 Example:- http://localhost:8080/products/13860428
 ````
