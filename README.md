@@ -20,7 +20,7 @@ BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing
 Service Flow:
 *********************************************************************************
 
-![Screenshot](MyRetail.PNG)
+![Screenshot](MyRetail.png)
 
 Technology Stack:
 ************************************************************************************
