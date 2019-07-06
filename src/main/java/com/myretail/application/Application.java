@@ -26,6 +26,7 @@ public class Application implements CommandLineRunner {
 		SpringApplication.run(Application.class, args);
 	}
 
+	
 	// pre-populate some price data in data store(mongodb)
 	@Override
 	public void run(String... args) throws Exception {
