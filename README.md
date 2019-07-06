@@ -58,34 +58,18 @@ Import the project into eclipse – File->import
 
 ````Run the application:````
 *********************************
-
-1)Need to have mongodb running on :
-
-Host: 127.0.0.1 Port: 27017
-
-2)//GET endpoint Type the below URl in the Web Browser: 
-	http://localhost:8080/products/{id}
-
-example: http://localhost:8080/products/13860428
-
-To test Update: In Swagger: Send a PUT request to http://localhost:8080/products/{id}
-
-Example:- http://localhost:8080/products/13860428
-````
-{"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}} 
-````
-1)mongodb  should be running on :
+1) mongodb should be running on :
 
 Host: 127.0.0.1 Port: 27017
 
-2)to Test the get request type the below URl in the Web Browser: 
+2) To Test the get request type the below URl in the Web Browser: 
 	http://localhost:8080/products/{id}   where {id} is the productId
 
-example: http://localhost:8080/products/13860428
+	Example: http://localhost:8080/products/13860428
 
 To test Update: In Swagger: Send a PUT request to http://localhost:8080/products/{id}    where {id} is the productId
 
-Example:- http://localhost:8080/products/13860428
+	Example:- http://localhost:8080/products/13860428
 ````
 {"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}} 
 ````
