@@ -1,4 +1,4 @@
-Case Study:
+````Case Study:````
 ***********************************************************
 
 myRetail is a rapidly growing company with HQ in Richmond, VA and over 200 stores across the east coast. myRetail wants to make its internal data available to any number of client devices, from myRetail.com to native mobile apps.
@@ -21,7 +21,7 @@ Reads pricing information from a NoSQL data store and combines it with the produ
 
 BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing a JSON request body similar to the GET response, and updates the product’s price in the data store.
 
-Service Flow:
+````Service Flow:````
 *********************************************************************************
 
 ![Screenshot](MyRetail-flow.png)
