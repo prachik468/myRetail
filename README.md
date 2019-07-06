@@ -26,7 +26,7 @@ BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing
 
 ![Screenshot](MyRetail-flow.png)
 
-Technology Stack:
+````Technology Stack:````
 ************************************************************************************
 
 1	Java	1.8
@@ -41,7 +41,7 @@ Technology Stack:
 
 5	Mockito	http://site.mockito.org/
 
-Setup instructions:
+````Setup instructions:````
 *****************************************************************************
 
 Install Java 1.8
@@ -90,13 +90,13 @@ Example:- http://localhost:8080/products/13860428
 {"id":13860428,"name":"The Big Lebowski (Blu-ray) (Widescreen)","current_price":{"value": 13.49,"currency_code":"USD"}} 
 ````
 
-Testing:
+````Testing:````
 *********************************************************************
 The testcases are present in the folder 'src\test\java\com\myretail\controller' and 'src\test\java\com\myretail\service'
 
 The test cases can be executed by running the command './gradlew test'
 
-Swagger2 documentation path:
+````Swagger2 documentation path:````
 *******************************************
 
 http://localhost:8080/swagger-ui.html
