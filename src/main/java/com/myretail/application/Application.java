@@ -13,12 +13,11 @@ import com.myretail.repository.ProductRepository;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-
 @SpringBootApplication
 @ComponentScan(basePackages = "com.*")
 @EnableMongoRepositories(basePackageClasses = ProductRepository.class)
 @EnableSwagger2
-public class Application  implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -30,8 +29,8 @@ public class Application  implements CommandLineRunner {
 	// pre-populate some price data in data store(mongodb)
 	@Override
 	public void run(String... args) throws Exception {
-		Price price = new Price("13860428",13860428,14.49,"USD");
-		Product product = new Product(13860428,"The Big Lebowski (Blu-ray) (Widescreen)",price);
+		Price price = new Price("13860428", 13860428, 14.49, "USD");
+		Product product = new Product(13860428, "The Big Lebowski (Blu-ray) (Widescreen)", price);
 		productRepository.save(product);
 	}
 }
