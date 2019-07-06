@@ -104,3 +104,4 @@ GET: With invalid product (http://localhost:8080/products/13860428)
 
 PUT Request: With invalid product Id:
 ![Screenshot](put-with-invalid-data.PNG)
+![Screenshot](put-with-invalid-data-response.PNG)
