@@ -20,9 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 
 	public Product getProduct(long id) {
-		System.out.println("id;" + id);
 		String name = this.getProductInfo(id);
-		System.out.println("name;" + name);
 		return new Product(id, name, getPrice(id));
 	}
 

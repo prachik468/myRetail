@@ -1,12 +1,7 @@
 package com.myretail.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -23,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.myretail.exception.ProductMisMatchException;
 import com.myretail.exception.ProductNotFoundException;
@@ -32,7 +28,7 @@ import com.myretail.service.ProductService;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ProductController.class)
-@WebMvcTest(value = ProductController.class, secure = false)
+@WebMvcTest(value = ProductController.class)
 public class ProductControllerTest {
 
 	@Autowired
@@ -42,10 +38,20 @@ public class ProductControllerTest {
 	@Qualifier(value = "productService")
 	private ProductService productService;
 
+	private static final String CONTEXT_ROOT = "/products/";
+
+	private static final String PRODUCT_ID = "{\"productId\":";
+
+	private static final String CONTENT = ",\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":19.99,\"currency_code\":\"USD\"}}";
+
 	private long ITEM_ID = 13860428;
 
+	private long INVALID_ITEM_ID = 888;
+
+	private String INVALID_ARGUMENT = "XYZ";
+
 	Product product = null;
-	Price price = null;
+	Price price = new Price();
 
 	@Before
 	public void setup() {
@@ -56,44 +62,55 @@ public class ProductControllerTest {
 	}
 
 	@Test
-	@Ignore
+
 	public void testGetRequest() throws Exception {
 		Mockito.when(productService.getProduct(ITEM_ID)).thenReturn(product);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/products/" + ITEM_ID).accept(MediaType.APPLICATION_JSON);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CONTEXT_ROOT + ITEM_ID)
+				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = this.mockMvc.perform(requestBuilder).andReturn();
 		String expected = "{\"productId\":13860428,\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":33.33,\"currency_code\":\"USD\"}}";
 		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 	}
 
-	@Test
-	@Ignore
+	@Test(expected = ProductNotFoundException.class)
 	public void testGetProductNotFound() throws Exception {
-		Mockito.when(productService.getProduct(888)).thenThrow(ProductNotFoundException.class);
-		mockMvc.perform(get("/products/888")).andExpect(status().isNotFound())
-				.andExpect(content().json("{message:'product not found'}"));
-
+		Mockito.when(productService.getProduct(INVALID_ITEM_ID)).thenThrow(ProductNotFoundException.class);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CONTEXT_ROOT + INVALID_ITEM_ID)
+				.accept(MediaType.APPLICATION_JSON);
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		Assert.assertEquals(HttpStatus.NOT_FOUND.value(), result.getResponse().getStatus());
+		throw result.getResolvedException();
 	}
 
-	@Test(expected = ProductMisMatchException.class)
-	@Ignore
-	public void testBadGetRequest() throws Exception, ProductMisMatchException {
-		String var = "XYZ";
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/" + var)
+	@Test(expected = MethodArgumentTypeMismatchException.class)
+	public void testInvalidGetRequest() throws Exception, MethodArgumentTypeMismatchException {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CONTEXT_ROOT + INVALID_ARGUMENT)
 				.accept(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		Assert.assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
 		throw result.getResolvedException();
 	}
 
+	@Test(expected = ProductMisMatchException.class)
+	public void testProductMismatch() throws Exception, ProductMisMatchException {
+		this.product.getPrice().setValue(19.99);
+		Mockito.when(productService.updatePrice(ITEM_ID, product)).thenReturn(product);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CONTEXT_ROOT + INVALID_ITEM_ID)
+				.accept(MediaType.APPLICATION_JSON).content(PRODUCT_ID + ITEM_ID + CONTENT)
+				.contentType(MediaType.APPLICATION_JSON_VALUE);
+
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		Assert.assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
+		throw result.getResolvedException();
+	}
+
 	@Test
-	@Ignore
+
 	public void testPutRequest() throws Exception {
 		this.product.getPrice().setValue(19.99);
 		Mockito.when(productService.updatePrice(ITEM_ID, product)).thenReturn(product);
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/products/" + ITEM_ID)
-				.accept(MediaType.APPLICATION_JSON)
-				.content("{\"productId\":" + ITEM_ID
-						+ ",\"name\":\"The Big Lebowski (Blu-ray)\",\"current_price\":{\"value\":19.99,\"currency_code\":\"USD\"}}")
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CONTEXT_ROOT + ITEM_ID)
+				.accept(MediaType.APPLICATION_JSON).content(PRODUCT_ID + ITEM_ID + CONTENT)
 				.contentType(MediaType.APPLICATION_JSON_VALUE);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();

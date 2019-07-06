@@ -54,4 +54,15 @@ public class Price {
 	public void setCurrCode(String currCode) {
 		this.currCode = currCode;
 	}
+
+	public Price() {
+	}
+	
+	public Price(String priceId, long id, Double value, String currCode) {
+		super();
+		this.priceId = priceId;
+		this.id = id;
+		this.value = value;
+		this.currCode = currCode;
+	}
 }
