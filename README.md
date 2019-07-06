@@ -44,17 +44,22 @@ BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing
 ````Setup instructions:````
 *****************************************************************************
 
-Install Java 1.8
+1) Install Java 1.8
 
-Download STS 3.9.9 : https://spring.io/tools3/sts/all
+2) Download STS 3.9.9 : https://spring.io/tools3/sts/all
 
-Install Mongo DB: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+3) Install Mongo DB: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
 
-Github: Download project from the following git repository https://github.com/prachik468/myRetail a) Download as a ZIP file OR
+4)  Github: Download project from the following git repository https://github.com/prachik468/myRetail 
+	a) Download as a ZIP file OR
 
-b) Clone the git project from git-bash or command prompt (You must have git setup)
+	b) Clone the git project from git-bash or command prompt (You must have git setup)
 
-Import the project into eclipse – File->import
+6) Import the project into eclipse – File->import
+
+7) Open browser and visit Swagger.
+`http://localhost:8080/swagger-ui.html`
+8) Swagger documentation explains the expected request and response for GET and PUT requests.
 
 ````Run the application:````
 *********************************
