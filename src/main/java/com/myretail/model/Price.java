@@ -12,7 +12,7 @@ public class Price {
 
 	@JsonIgnore
 	@Id
-	private String priceId;
+	private long priceId;
 
 	@JsonIgnore
 	private long id;
@@ -23,11 +23,11 @@ public class Price {
 	@Field("currency_code")
 	private String currCode;
 
-	public String getPriceId() {
+	public long getPriceId() {
 		return priceId;
 	}
 
-	public void setPriceId(String priceId) {
+	public void setPriceId(long priceId) {
 		this.priceId = priceId;
 	}
 
@@ -58,9 +58,8 @@ public class Price {
 	public Price() {
 	}
 	
-	public Price(String priceId, long id, Double value, String currCode) {
+	public Price(long id, Double value, String currCode) {
 		super();
-		this.priceId = priceId;
 		this.id = id;
 		this.value = value;
 		this.currCode = currCode;
