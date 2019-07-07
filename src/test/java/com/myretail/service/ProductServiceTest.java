@@ -27,7 +27,7 @@ public class ProductServiceTest {
 	private ProductRepository productRepository;
 
 	Long productID = (long) 13860428;
-	Price priceInfo = new Price("13860428",13860428,19.99,"USD");
+	Price priceInfo = new Price(13860428,19.99,"USD");
 	Product mockProduct = new Product(productID, "The Big Lebowski (Blu-ray)", priceInfo);
 
 	@Test
