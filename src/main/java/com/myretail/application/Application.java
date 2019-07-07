@@ -30,7 +30,7 @@ public class Application implements CommandLineRunner {
 	// pre-populate some price data in data store(mongodb)
 	@Override
 	public void run(String... args) throws Exception {
-		Price price = new Price("13860428", 13860428, 14.49, "USD");
+		Price price = new Price(13860428, 14.49, "USD");
 		Product product = new Product(13860428, "The Big Lebowski (Blu-ray) (Widescreen)", price);
 		productRepository.save(product);
 	}
