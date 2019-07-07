@@ -41,6 +41,8 @@ BONUS: Accepts an HTTP PUT request at the same path (/products/{id}), containing
 
 5	Mockito	http://site.mockito.org/
 
+6 	Mongo DB Compass v1.18.0
+
 ````Setup instructions:````
 *****************************************************************************
 
