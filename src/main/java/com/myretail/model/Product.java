@@ -1,12 +1,9 @@
 package com.myretail.model;
 
-import org.springframework.data.annotation.Id;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Product {
 
-	@Id
 	public long productId;
 
 	public String name;
